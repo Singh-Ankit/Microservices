@@ -1,0 +1,227 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.vertical-center {
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+login-container {
+    margin-top: 5%;
+    /*align-self:center;*/
+    margin-bottom: 5%;
+    /*margin: 0 auto;*/
+    /*float:none;*/
+}
+
+.login-form-1 {
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+    .login-form-1 h3 {
+        text-align: center;
+        color: #333;
+    }
+
+.login-form-2 {
+    padding: 5%;
+    /*background: #fff;*/
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+    .login-form-2 h3 {
+        text-align: center;
+        /*color: #fff;*/
+        color: black;
+    }
+
+.login-container form {
+    padding: 7%;
+}
+
+.btnSubmit {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form-1 .btnSubmit {
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+
+.login-form-2 .btnSubmit {
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+}
+
+.login-form-2 .ForgetPwd {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-form-2 .bcd {
+    color: #fff;
+    font-weight: 600;
+}
+
+.abc {
+    color: white;
+    font-weight: 600;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #fbfbfb;
+}
+
+.card {
+    position: absolute;
+    top: 35%;
+    left: 10%;
+    transform: translate(-50%,-50%);
+    width: 200px;
+    min-height: 300px;
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(0,0,0,.1);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+    .card:hover {
+        box-shadow: 0 30px 70px rgba(0,0,0,.2);
+    }
+
+    .card .box {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+        .card .box .img {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+            .card .box .img img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .card .box h2 {
+            font-size: 20px;
+            color: #262626;
+            margin: 20px auto;
+        }
+
+            .card .box h2 span {
+                font-size: 14px;
+                background: #e91e63;
+                color: #fff;
+                display: inline-block;
+                padding: 4px 10px;
+                border-radius: 15px;
+            }
+
+        .card .box p {
+            color: #262626;
+        }
+
+        .card .box span {
+            display: inline-flex;
+        }
+
+        .card .box ul {
+            margin: 0;
+            padding: 0;
+        }
+
+            .card .box ul li {
+                list-style: none;
+                float: left;
+            }
+
+                .card .box ul li a {
+                    display: block;
+                    color: #aaa;
+                    margin: 0 10px;
+                    font-size: 20px;
+                    transition: 0.5s;
+                    text-align: center;
+                }
+
+                .card .box ul li:hover a {
+                    color: #e91e63;
+                    transform: rotateY(360deg);
+                }
+/*horizontal rule*/
+hr.style-three {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+    hr.style-three:before {
+        display: block;
+        content: "";
+        height: 30px;
+        margin-top: -31px;
+        border-style: solid;
+        border-color: black;
+        border-width: 0 0 1px 0;
+        border-radius: 20px;
+    }
+
+a:link {
+    color: #cc0000;
+}
+
+a:visited {
+    color: #999999;
+}
+
+a:hover {
+    color: #ff3300;
+}

@@ -1,0 +1,54 @@
+﻿@model LoginViewModel
+
+
+<link href="~/css/LoginStyle.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "User Login";
+}
+
+
+<div class="login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <style>
+                .visible {
+                    visibility: hidden
+                }
+                #homeLoginBtn {
+                    visibility: hidden
+                }
+            </style>
+            <form method="post">
+                <h4 style="color:blue"> Login Your Account !</h4>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    @*<label asp-for="Email"></label>*@
+                    <input asp-for="Email" class="form-control" placeholder="Email *" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Password"></label>*@
+                    <input asp-for="Password" class="form-control" placeholder="Password *" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.ActionLink("* New user please Register here !!", "Register", "account")
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+        <div class="col-md-6 login-form-1">
+            <img src="~/images/Login Page.gif" class="rounded float-left" style="width:400px; height:289px" alt="Unable To Load Image">
+            @*<img src="D:\POC\POC_Application\WebApps\Image\GIF2_1200x675_v2.0.gif" class="rounded float-left" style="width:400px; height:289px" />*@
+        </div>
+    </div>
+</div>
