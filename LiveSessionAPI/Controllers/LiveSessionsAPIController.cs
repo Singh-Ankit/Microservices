@@ -7,70 +7,56 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EntityContext;
 using Model;
+using LiveSessionAPI.Repository;
+using Newtonsoft.Json;
 
 namespace LiveSessionAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LiveSessionsController : ControllerBase
+    public class LiveSessionsAPIController : ControllerBase
     {
         private readonly SFeedbackDbContext _context;
+        LiveSessionRepo repo = new LiveSessionRepo();
 
-        public LiveSessionsController(SFeedbackDbContext context)
+        public LiveSessionsAPIController(SFeedbackDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/LiveSessions
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<LiveSession>>> GetliveSessions()
+        // GET: api/LiveSessionsAPI/5
+        //[HttpGet("{category}")]
+        [HttpGet("{category}", Name = "GetLiveSession")]
+        // public async Task<ActionResult<LiveSession>> GetLiveSession(int id)
+        public async Task<ActionResult<IEnumerable<LiveSession>>> GetLiveSession([FromRoute] String category)
         {
-            _context.Database.EnsureCreated();
-            if (!_context.liveSessions.Any())
-            {
-                _context.liveSessions.Add(new LiveSession()
-                {
-                     isPrivate = true,
-                      organiser = "Mike Zed",
-                       Url = "nO Url",
-                        duration = 60,
-                         description = "Session on .net ",
-                          sessionCategory = ".Net",
-                           sessionFeedbacks = new List<SessionFeedback> ()
-                           {
-                               new SessionFeedback()
-                               {
-                                    rating = 10
-                               }
-                           }
+          
 
-                });
-            }
-            var proxydata = _context.liveSessions.Count();
+            //IList<SessionFeedback> _sessionFeedbacks = await _context.sessionFeedbacks
+            //                                           .Include(l => l.liveSession)
+            //                                           .Where(x => x.liveSession.sessionCategory == category)
+            //                                           .ToListAsync();
+            //IList<LiveSession> _liveSessions = await _context.liveSessions
+            //                                    .Include(f => f.sessionFeedbacks)
+            //                                    .Where(x => x.sessionCategory == category)
+            //                                    .ToListAsync();
+            IList<LiveSession> result = await _context.liveSessions.Where(x => x.sessionCategory == category).ToListAsync();
 
-            //Gives the count of data in the local or in memory. Initiallly its 0 when no data in db
-            var localData = _context.liveSessions.Local.Count();
 
-            // Here the changes will be saved
-            _context.SaveChanges();
-            return await _context.liveSessions.ToListAsync();
-        }
 
-        // GET: api/LiveSessions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<LiveSession>> GetLiveSession(int id)
-        {
-            var liveSession = await _context.liveSessions.FindAsync(id);
-
-            if (liveSession == null)
+            if (result == null)
             {
                 return NotFound();
             }
+            else
+            {
+                return await _context.liveSessions.Where(x => x.sessionCategory == category).ToListAsync();
+            }
 
-            return liveSession;
+            
         }
 
-        // PUT: api/LiveSessions/5
+        // PUT: api/LiveSessionsAPI/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]

@@ -46,6 +46,10 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="LiveSessions" asp-action="ListAllSessions" data-toggle="tooltip" data-html="true" title="<em>Attend</em> <b>Live Sessions</b>">Attend Webinars</a>
+                            @if (signInManager.IsSignedIn(User))
+                                TempData["LoggedUser"] = User.Identity.Name;
+                            else
+                                TempData["LoggedUser"] = null;
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

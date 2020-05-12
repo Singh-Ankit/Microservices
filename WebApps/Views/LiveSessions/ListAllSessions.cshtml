@@ -1,4 +1,7 @@
-﻿
+﻿@model IEnumerable<WebApps.ViewModels.LiveSessionViewModel>
+
+@inject SignInManager<ApplicationUser> signInManager
+
 @{
     ViewData["Title"] = "ListAllSessions";
 }
@@ -6,6 +9,7 @@
 <div class="container-fluid">
     <img src="~/images/webinar-2636738_1920.jpg" class="img-fluid" alt="Responsive image">
 </div>
+@* PUBLIC DIV *@
 <div>
     <hr />
     <h3> Public Sessions </h3>
@@ -33,29 +37,91 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div class="card card-inverse card-info">
-                <div class="card card-inverse card-info">
-                    <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                    <div class="card-block">
-                        <h4 class="card-title mt-3">Business Communication</h4>
-                        <div class="meta card-text">
-                            <a>Duration: 1 Hour</a>
+                    <div class="card card-inverse card-info">
+                        <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                        <div class="card-block">
+                            <h4 class="card-title mt-3">Business Communication</h4>
+                            <div class="meta card-text">
+                                <a>Duration: 1 Hour</a>
+                            </div>
+                            <div class="card-text"><a>Host: Jerry</a></div>
                         </div>
-                        <div class="card-text"><a>Host: Jerry</a></div>
-                    </div>
-                    <div class="card-footer">
-                        <a asp-controller="" asp-action="" class="btn btn-info float btn-sm" data-toggle="tooltip" data-html="true" title="<em>Click to</em> <b>Join</b>">Attend</a>
+                        <div class="card-footer">
+                            <a asp-controller="" asp-action="" class="btn btn-info float btn-sm" data-toggle="tooltip" data-html="true" title="<em>Click to</em> <b>Join</b>">Attend</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@* PRIVATE DIV *@
 <div>
     <hr />
     <h3> Private Sessions </h3>
     <hr />
 </div>
-    </div>
 <div class="container">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <form method="post">
+            <div class="container">
+                <div class="row">
+                    @{
+                        if (Model.Count() == 0)
+                        {
+                            <h6>Private session will be available soon! </h6>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                                    <div class="card card-inverse card-info">
+                                        <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                                        <div class="card-block">
+                                            <h4 class="card-title mt-3">@($"{item.description}")</h4>
+                                            <div class="meta card-text">
+                                                <a>Duration: @($"{item.duration} mins") </a>
+                                            </div>
+                                            <div class="card-text"><a>Host: @item.organiser</a></div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a asp-controller="" asp-action="" asp-route-id="@item.Url"
+                                               class="btn btn-info float btn-sm" data-toggle="tooltip" data-html="true" title="<em>Click to</em> <b>Join</b>">Attend</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    @*@foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                <div class="card card-inverse card-info">
+                    <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                    <div class="card-block">
+                        <h4 class="card-title mt-3">@($"{item.description}")</h4>
+                        <div class="meta card-text">
+                            <a>Duration: @($"{item.duration} mins") </a>
+                        </div>
+                        <div class="card-text"><a>Host: @item.organiser</a></div>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="" asp-action="" asp-route-id="@item.Url"
+                           class="btn btn-info float btn-sm" data-toggle="tooltip" data-html="true" title="<em>Click to</em> <b>Join</b>">Attend</a>
+                    </div>
+                </div>
+            </div>
+        }*@
+                </div>
+            </div>
+        </form>
+    }
+    else
+    {
+        <h6> Please Login! to access private session </h6>
 
+                
+    }
 </div>

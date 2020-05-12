@@ -1,10 +1,33 @@
 ﻿@model WebApps.ViewModels.RegisterViewModel
 
 <link href="~/css/LoginStyle.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 @{
     ViewData["Title"] = "Register";
 }
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $('#ddlPrimarySkill').change(function () {
+            debugger;
+           // var e = document.getElementById(q);
+            
+            var e = document.getElementById("ddlPrimarySkill");
+            var selValue = e.options[e.selectedIndex].text;
+            document.getElementById("ddlPrimarySkill").val(selValue);
+            //$('#ddlPrimarySkill').val(selValue);
+           // alert("You ddlPrimarySkill " + e.options[e.selectedIndex].value);
+           // var ddlValue = $("#ddlPrimarySkill option:selected").text();
+        });
+
+    });
+        
+</script>*@
+   
+
+
 
 <div class="login-container" style="margin-bottom: 7%;margin-top: -1%;">
     <div class="row">
@@ -32,6 +55,22 @@
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="primarySkill" class="control-label"></label>
+                    <select asp-for="primarySkill" id="ddlPrimarySkill" class="form-control">
+                        <option value="NA" selected disabled hidden>Choose Here</option>
+                        <option value="ML">Machine Learning</option>
+                        <option value="Testing">Testing</option>
+                        <option value="FullStack">FullStack Development</option>
+                        <option value="Mobility">Mobility</option>
+                        <option value="Ui">UI/UX</option>
+                        <option value="DevOps">DevOps</option>
+                        <option value="Cloud">Cloud</option>
+                        <option value="RPA">RPA</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
@@ -52,6 +91,7 @@
         </div>
     </div>
 </div>
+
 
 
 @section Scripts {

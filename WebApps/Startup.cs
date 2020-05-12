@@ -35,6 +35,8 @@ namespace WebApps
             services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
             services.AddTransient<IDashboardService, DashboardService>();
+            services.AddTransient<ILiveSessionService, LiveSessionService>();
+            //LiveSessionService : ILiveSessionService
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Indentity Server API", Version = "v1" });
