@@ -1,0 +1,52 @@
+﻿@model WebApps.ViewModels.CreateRoleViewModel
+
+@{
+    ViewData["Title"] = "CreateRole";
+}
+
+
+<link href="~/css/LoginStyle.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<div class="login-container" style="margin-bottom: 7%;margin-top: -1%;padding-top: 2%;">
+    <div class="row">
+        <div class="col-md-6 col-md-6 login-form-1">
+            <style>
+                .visible {
+                    visibility: hidden
+                }
+
+                #homeLoginBtn {
+                    visibility: hidden
+                }
+
+                #Live_Privacy_NavBar {
+                    visibility: hidden
+                }
+            </style>
+            <form method="post">
+                <h5 style="color:blue">Welcome Admin ! Create New Role</h5>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="RoleName" class="control-label"></label>
+                    <input asp-for="RoleName" class="form-control" />
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-html="true" title="<em>Click to</em> <b>Assign Roles<b>" >Create Role</button>
+                    <input type="button" class="btn btn-success" value="Check Available Roles" id="UseShipAddr" data-toggle="tooltip" data-html="true" title="<em>Check Existing roles</em>" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-6 login-form-1">
+            <img src="~/images/Registration.gif" class="rounded float-left" style="width:100%; height:99%" alt="Unable To Load Image">
+        </div>
+        </div>
+    </div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
